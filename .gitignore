@@ -30,3 +30,47 @@
 *.exe
 *.out
 *.app
+
+# Ignore build artifacts
+build/
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+Makefile
+cmake_install.cmake
+compile_commands.json
+install_manifest.txt
+*.cmake
+
+# Ignore generated project files
+.idea/
+.vscode/
+*.suo
+*.user
+*.userprefs
+*.sln
+*.suo
+*.user
+*.userprefs
+
+# Ignore executables and shared libraries
+*.exe
+*.out
+*.so
+*.dll
+
+# Ignore object files and libraries
+*.o
+*.a
+*.lib
+
+# Ignore dependency directories
+dependencies/
+
+# Ignore user-specific files
+CMakeUserPresets.json
+CMakePresets.json
+
+# Ignore generated documentation
+doc/html/
+doc/latex/
