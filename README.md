@@ -5,5 +5,5 @@ The simulation provides a visual representation of how these laws govern the beh
 
 ## Screenshots
 
-![Spheres in Motion](https://github.com/jeanedit/Simple-Physics-Engine/tree/main/Demos/res/pics/Capture.JPG)
+![Spheres in Motion] (https://github.com/jeanedit/Simple-Physics-Engine/tree/main/Demos/res/pics/Capture.JPG)
 
