@@ -58,6 +58,8 @@ namespace cyclone {
 			m_Z = z;
 		}
 
+		static const Vector3 GRAVITY;
+
 	private:
 		float m_X, m_Y, m_Z;
 		float pad = 0.0f; //padding for alignment

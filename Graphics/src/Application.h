@@ -39,6 +39,10 @@ public:
 		Terminate();
 	}
 
+	inline const GLFWwindow* GetWindow() const {
+		return m_Window;
+	}
+
 	static void MouseCallback(GLFWwindow* window, double xPos, double yPos);
 	static void ResizeCallback(GLFWwindow* window, int newWidth, int newHeight);
 	static void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
@@ -48,8 +52,6 @@ public:
 	void HandleMouseCallback(double xPos, double yPos);
 	void HandleScrollCallback(double yOffset);
 	void HandleKeyCallback(int key, int scancode, int action, int mods);
-
-	virtual void ProcessInput() {}
 
 	virtual void OnResize(int newWidth, int newHeight) {}
 	virtual void ProcessMouseInput(double xOffset, double yOffset) {}

@@ -47,7 +47,6 @@ void OpenGLApp::Run() {
 	}
 
 	while (!glfwWindowShouldClose(m_Window)) {
-		ProcessInput();
 		Render();
 		glfwSwapBuffers(m_Window);
 		glfwPollEvents();

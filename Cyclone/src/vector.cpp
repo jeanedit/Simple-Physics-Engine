@@ -3,6 +3,7 @@
 #include <iostream>
 
 namespace cyclone {
+	const Vector3 Vector3::GRAVITY = Vector3(0, -9.81f, 0);
 
 	/* constructors */
 	Vector3::Vector3() 

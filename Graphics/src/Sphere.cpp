@@ -75,21 +75,10 @@ void Sphere::GenerateSphere(float radius, int sectors, int stacks) {
 	m_VA.Unbind();
 }
 
-void Sphere::Draw(const Shader& shader) {
+void Sphere::Draw(const Shader& shader) const {
 	shader.Use();
 
 	m_VA.Bind();
 	glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_INT, 0);
 	m_VA.Unbind();
-}
-
-void Sphere::Rotate(float rotation_angle, const glm::vec3& axis) {
-	m_ModelMatrix = glm::rotate(m_ModelMatrix, rotation_angle, axis);
-}
-void Sphere::Translate(const glm::vec3& vec) {
-	m_ModelMatrix = glm::translate(m_ModelMatrix, vec);
-}
-
-void Sphere::Scale(const glm::vec3& vec) {
-	m_ModelMatrix = glm::scale(m_ModelMatrix, vec);
 }

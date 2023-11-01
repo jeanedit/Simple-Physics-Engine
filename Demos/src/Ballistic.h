@@ -27,10 +27,6 @@ public:
 
 	void Run() override;
 
-	inline const GLFWwindow* GetWindow() const {
-		return m_Window;
-	}
-
 	void ProcessMouseInput(double xOffset, double yOffset) override {}
 
 	void ProcessKeyboardInput(int key, int action) override;

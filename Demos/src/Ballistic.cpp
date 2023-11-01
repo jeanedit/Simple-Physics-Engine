@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <filesystem>
 
-
 glm::vec3 BallisticDemo::lightPos = glm::vec3(1.0f, 0.0f, 2.0f);
 glm::mat4 BallisticDemo::projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 1.0f, 600.0f);
 
@@ -147,12 +146,6 @@ void BallisticDemo::RenderStartSphere() {
 void BallisticDemo::RenderLines(const VertexArray& vao, size_t ibo_size) {
 	m_StrToShader["line"]->Use();
 	vao.Bind();
-	//glm::mat4 projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 1.0f, 1000.0f);
-	static const float divisor = 15.0f;
-	//glm::mat4 projection = glm::ortho(-(800.0f / divisor), 800.0f / divisor,
-	//	600.0f / divisor, -(600.0f / divisor),
-	//	1.0f, 500.0f);
-	//glm::mat4 projection = glm::mat4(1.0f);
 	m_StrToShader["line"]->SetMat4("projection", projection);
 	m_StrToShader["line"]->SetMat4("view", m_Camera->GetViewMatrix());
 	for (float i = -200.0f; i < 100.0f; i += 10.0f) {
@@ -170,9 +163,6 @@ void BallisticDemo::RenderLines(const VertexArray& vao, size_t ibo_size) {
 }
 
 void BallisticDemo::Update() {
-	static const uint64_t time_bound = 5000;
-	static const float z_bound = -200.0f;
-	static const float y_bound = 0.0f;
 	// Find the duration of the last frame in seconds
 	float duration = static_cast<float>(TimingData::Get().m_LastFrameDuration * 0.001f);
 
@@ -183,9 +173,9 @@ void BallisticDemo::Update() {
 			// Run the physics
 			shot.particle.Integrate(duration);
 			// Check if the particle is now invalid
-			if (shot.particle.GetPosition().GetY() < y_bound ||
-				shot.start_time + time_bound < TimingData::Get().m_LastFrameTimeStamp ||
-				shot.particle.GetPosition().GetZ() < z_bound) {
+			if (shot.particle.GetPosition().GetY() < 0.0f ||
+				shot.start_time + 5000 < TimingData::Get().m_LastFrameTimeStamp ||
+				shot.particle.GetPosition().GetZ() < -200.0f) {
 				// We simply set the shot type to be unused, so the
 				// memory it occupies can be reused by another shot.
 				shot.shot_type = ShotType::UNUSED;
@@ -228,14 +218,13 @@ void BallisticDemo::InitializeData() {
 	std::string sourceFilePath = __FILE__;
 	std::filesystem::path sourcePath(sourceFilePath);
 	std::filesystem::path sourceDirectory = sourcePath.parent_path().parent_path();
-	std::filesystem::path shader_dir = sourceDirectory / "res"/ "shaders/";
+	std::filesystem::path shader_dir = sourceDirectory / "res" / "shaders/";
 	std::cout << shader_dir.string() + "\\sphere_vertex.shader" << std::endl;
-	m_StrToShader["sphere"] = std::make_shared<Shader>(shader_dir.string() + "sphere_vertex.shader", 
+	m_StrToShader["sphere"] = std::make_shared<Shader>(shader_dir.string() + "sphere_vertex.shader",
 		shader_dir.string() + "sphere_fragment.shader");
 
-	m_StrToShader["line"] = std::make_shared<Shader>(shader_dir.string() + "line_vertex.shader", 
+	m_StrToShader["line"] = std::make_shared<Shader>(shader_dir.string() + "line_vertex.shader",
 		shader_dir.string() + "line_fragment.shader");
-
 	glEnable(GL_DEPTH_TEST);
 	m_Camera = std::make_shared<Camera>(glm::vec3(-55.0f, 20.0f, 20.0f), glm::vec3(0.0f, 1.0f, 0.0f), -40.0f, -5.0f);
 }
@@ -277,7 +266,7 @@ void BallisticDemo::Run() {
 		//ProcessInput();
 
 		Render();
-		RenderLines(vao,groundIndices.size());
+		RenderLines(vao, groundIndices.size());
 		TimingData::Get().Update();
 		Update();
 		// Swap buffers and poll events
