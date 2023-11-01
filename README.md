@@ -1,6 +1,6 @@
 # Simple-Physics-Engine
 
-Currently, this project contains only a Ballistic Demo,where I focus on rendering spheres and showcasing fundamental kinematic laws, such as motion, velocity, and acceleration. 
+Currently, this project contains a Ballistic Demo and a Fireworks Demo ,where I focus on rendering objects and showcasing fundamental kinematic laws, such as motion, velocity, and acceleration. 
 The simulation provides a visual representation of how these laws govern the behavior of objects in motion.
 
 ## Screenshots
